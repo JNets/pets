@@ -31,17 +31,28 @@ public class PetsRating extends AppCompatActivity {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
 
         ArrayList<Pet> pets = new ArrayList<>();
-        PetAdaptator adaptator = new PetAdaptator(pets);
+        pets.add(new Pet(R.drawable.copito, "Copito", 1));
+        pets.add(new Pet(R.drawable.dominic, "Dominic", 2));
+        pets.add(new Pet(R.drawable.kirara, "Kirara", 3));
+        pets.add(new Pet(R.drawable.lucky, "Lucky", 4));
+        pets.add(new Pet(R.drawable.paco_y_pina, "Paco y Pina", 5));
+        pets.add(new Pet(R.drawable.patricio, "Patricio", 6));
+        pets.add(new Pet(R.drawable.scoth, "Scoth", 7));
+        pets.add(new Pet(R.drawable.snoopy, "Snoopy", 8));
+        pets.add(new Pet(R.drawable.toreto, "Toreto", 9));
 
+        ArrayList<Pet> lastPetRating = new ArrayList<>();
 
+        Bundle extras = getIntent().getExtras();
+        int [] rating = extras.getIntArray("rating");
 
+        for(int i = 0; i < 5; i++) {
+            lastPetRating.add(pets.get(rating[i - 1]));
+        }
+
+        PetAdaptator adaptator = new PetAdaptator(lastPetRating);
         RecyclerView ratingList = (RecyclerView) findViewById(R.id.petRatingList);
         ratingList.setLayoutManager(llm);
         ratingList.setAdapter(adaptator);
-
-        Bundle extras = getIntent().getExtras();
-
-        int [] rating = extras.getIntArray("rating");
-
     }
 }

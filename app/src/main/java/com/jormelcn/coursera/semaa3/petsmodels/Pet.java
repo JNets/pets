@@ -14,7 +14,14 @@ public class Pet implements Comparable<Pet>{
     private int rating;
     private PetAdaptator.PetViewHolder holder;
 
+    public static int[] lastRating = new int[5];
+
     public Pet(int picture, String name, int id){
+        if(lastRating[0] == 0){
+            for(int i = 0; i < 5; i++){
+                lastRating[i] = i + 1;
+            }
+        }
         this.picture = picture;
         this.name = name;
         this.rating = 0;
@@ -44,6 +51,11 @@ public class Pet implements Comparable<Pet>{
 
     public void addLike(){
         rating++;
+        for(int i = 4; i > 0; i--){
+            lastRating[i] = lastRating[i-1];
+        }
+        lastRating[0] = id;
+
         holder.petRating.setText(String.valueOf(rating));
     }
 

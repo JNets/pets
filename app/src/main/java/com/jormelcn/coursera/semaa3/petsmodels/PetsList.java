@@ -29,13 +29,7 @@ public class PetsList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent goRating = new Intent(getApplicationContext(), PetsRating.class);
-
-                int[] rating = new int[5];
-                for (int i = 0; i < 5; i++) {
-                    //rating[0] = pets.get(0).getId();
-                }
-
-                goRating.putExtra("rating", rating);
+                goRating.putExtra("rating", Pet.lastRating);
                 startActivity(goRating);
             }
         });
