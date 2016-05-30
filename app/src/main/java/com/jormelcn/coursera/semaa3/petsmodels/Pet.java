@@ -25,6 +25,7 @@ public class Pet implements Comparable<Pet>{
         this.picture = picture;
         this.name = name;
         this.rating = 0;
+        this.id = id;
     }
 
     public int getPicture() {
@@ -51,8 +52,14 @@ public class Pet implements Comparable<Pet>{
 
     public void addLike(){
         rating++;
-        for(int i = 4; i > 0; i--){
-            lastRating[i] = lastRating[i-1];
+        int i;
+        for(i = 0; i < 4; i++){
+            if(lastRating[i] == id)
+                break;
+        }
+
+        for(int j = i; j > 0; j--){
+            lastRating[j] = lastRating[j-1];
         }
         lastRating[0] = id;
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -27,9 +28,6 @@ public class PetsRating extends AppCompatActivity {
             }
         });
 
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-
         ArrayList<Pet> pets = new ArrayList<>();
         pets.add(new Pet(R.drawable.copito, "Copito", 1));
         pets.add(new Pet(R.drawable.dominic, "Dominic", 2));
@@ -46,10 +44,14 @@ public class PetsRating extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         int [] rating = extras.getIntArray("rating");
 
+        Log.i("rating", String.valueOf(rating[0]) + " " + String.valueOf(rating[1]) + " " +String.valueOf(rating[2]) + " " +String.valueOf(rating[3]) + " " +String.valueOf(rating[4]));
+
         for(int i = 0; i < 5; i++) {
-            lastPetRating.add(pets.get(rating[i - 1]));
+            lastPetRating.add(pets.get(rating[i] - 1));
         }
 
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
         PetAdaptator adaptator = new PetAdaptator(lastPetRating);
         RecyclerView ratingList = (RecyclerView) findViewById(R.id.petRatingList);
         ratingList.setLayoutManager(llm);
