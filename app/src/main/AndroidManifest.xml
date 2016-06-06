@@ -15,13 +15,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PetsRating"
+        <activity
+            android:name=".PetsRating"
             android:parentActivityName=".PetsList">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".PetsList"
-                ></meta-data>
+                android:value=".PetsList" />
         </activity>
+        <activity android:name=".ContactoActivity"></activity>
     </application>
 
 </manifest>

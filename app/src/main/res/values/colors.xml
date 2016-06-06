@@ -7,4 +7,5 @@
     <color name="colorTextPrimary">#FFFFFF</color>
     <color name="activityBackGround">#58ffaa00</color>
     <color name="transp">#00ffffff</color>
+    <color name="colorAccentText">#ffffff</color>
 </resources>

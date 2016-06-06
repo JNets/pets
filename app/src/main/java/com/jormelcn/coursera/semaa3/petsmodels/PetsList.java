@@ -1,58 +1,72 @@
 package com.jormelcn.coursera.semaa3.petsmodels;
 
+//import android.app.Fragment;
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class PetsList extends AppCompatActivity {
 
+    Toolbar toolbar;
+    TabLayout tabLayout;
+    ViewPager viewPager;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pets_list);
 
-        //Toolbar miActionBar = (Toolbar) findViewById(R.id.miActionBar);
-        //miActionBar.setTitle("Pets");
-        //miActionBar.setLogo(R.drawable.animal_paw_print);
-        //setSupportActionBar(miActionBar);
+        toolbar = (Toolbar) findViewById(R.id.toolBar);
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        Button starButton = (Button) findViewById(R.id.starButton);
-        starButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goRating = new Intent(getApplicationContext(), PetsRating.class);
-                goRating.putExtra("rating", Pet.lastRating);
-                startActivity(goRating);
-            }
-        });
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        fragments.add(new PetListFragment());
+        fragments.add(new PetsDetailFragment());
 
-        ArrayList<Pet> pets = new ArrayList<>();
-        pets.add(new Pet(R.drawable.copito, "Copito", 1));
-        pets.add(new Pet(R.drawable.dominic, "Dominic", 2));
-        pets.add(new Pet(R.drawable.kirara, "Kirara", 3));
-        pets.add(new Pet(R.drawable.lucky, "Lucky", 4));
-        pets.add(new Pet(R.drawable.paco_y_pina, "Paco y Pina", 5));
-        pets.add(new Pet(R.drawable.patricio, "Patricio", 6));
-        pets.add(new Pet(R.drawable.scoth, "Scoth", 7));
-        pets.add(new Pet(R.drawable.snoopy, "Snoopy", 8));
-        pets.add(new Pet(R.drawable.toreto, "Toreto", 9));
+        PageAdapter pageAdapter = new PageAdapter(getSupportFragmentManager(), fragments);
+        viewPager.setAdapter(pageAdapter);
 
+        tabLayout.setupWithViewPager(viewPager);
+    }
 
-        PetAdaptator adaptator = new PetAdaptator(pets);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+        return true;
+    }
 
-        RecyclerView petList = (RecyclerView) findViewById(R.id.petList);
-        petList.setLayoutManager(llm);
-        petList.setAdapter(adaptator);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()){
+            case R.id.contacto_option:
+                intent = new Intent(this, ContactoActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.about_option:
+                Toast.makeText(this, "About",Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
