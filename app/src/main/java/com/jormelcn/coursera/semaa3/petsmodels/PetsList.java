@@ -63,7 +63,8 @@ public class PetsList extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.about_option:
-                Toast.makeText(this, "About",Toast.LENGTH_SHORT).show();
+                intent = new Intent(this,BioActivity.class);
+                startActivity(intent);
                 break;
         }
 

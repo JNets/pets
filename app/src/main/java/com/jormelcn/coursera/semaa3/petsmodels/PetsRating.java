@@ -52,9 +52,9 @@ public class PetsRating extends AppCompatActivity {
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
-        PetAdaptator adaptator = new PetAdaptator(lastPetRating);
+        //PetAdaptator adaptator = new PetAdaptator(lastPetRating);
         RecyclerView ratingList = (RecyclerView) findViewById(R.id.petRatingList);
         ratingList.setLayoutManager(llm);
-        ratingList.setAdapter(adaptator);
+        //ratingList.setAdapter(adaptator);
     }
 }

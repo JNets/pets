@@ -22,7 +22,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".PetsList" />
         </activity>
-        <activity android:name=".ContactoActivity"></activity>
+        <activity android:name=".ContactoActivity" />
+        <activity android:name=".BioActivity"></activity>
     </application>
 
 </manifest>

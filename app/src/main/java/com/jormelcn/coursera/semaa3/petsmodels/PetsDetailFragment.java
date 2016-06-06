@@ -23,7 +23,6 @@ public class PetsDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.pet_detail_fragment, container, false);
-
         RecyclerView petGrid = (RecyclerView) view.findViewById(R.id.petGrid);
         ImageView profilePicture = (ImageView) view.findViewById(R.id.petProfilePicture);
         TextView profileName = (TextView) view.findViewById(R.id.petProfileName);
@@ -35,7 +34,7 @@ public class PetsDetailFragment extends Fragment {
         glm.setOrientation(LinearLayoutManager.VERTICAL);
         petGrid.setLayoutManager(glm);
 
-        PetAdaptator petAdaptator = new PetAdaptator(PetsContainer.PETS);
+        PetAdaptator petAdaptator = new PetAdaptator(PetsContainer.PETS, false);
         petGrid.setAdapter(petAdaptator);
 
         return view;

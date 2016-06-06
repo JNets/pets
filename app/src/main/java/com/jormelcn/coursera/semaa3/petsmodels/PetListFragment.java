@@ -28,7 +28,7 @@ public class PetListFragment extends Fragment {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         petList.setLayoutManager(llm);
 
-        PetAdaptator petAdaptator = new PetAdaptator(PetsContainer.PETS);
+        PetAdaptator petAdaptator = new PetAdaptator(PetsContainer.PETS, true);
         petList.setAdapter(petAdaptator);
         return view;
     }

@@ -40,14 +40,23 @@ public class Pet implements Comparable<Pet>{
         return  id;
     }
 
-    public void setHolder(PetAdaptator.PetViewHolder holder) {
+    public void setHolder(PetAdaptator.PetViewHolder holder, boolean type) {
         this.holder = holder;
         this.holder.petPicture.setBackgroundResource(picture);
         this.holder.petRating.setText(String.valueOf(rating));
-        this.holder.petName.setText(name);
         this.holder.orangeBone.setImageResource(R.drawable.dog_bone_orange);
-        this.holder.whiteBone.setBackgroundResource(R.drawable.dog_bone);
-        this.holder.whiteBone.setOnClickListener(new onLikeListener(this));
+        if(type) {
+            this.holder.petName.setText(name);
+            this.holder.whiteBone.setBackgroundResource(R.drawable.dog_bone);
+            this.holder.whiteBone.setOnClickListener(new onLikeListener(this));
+            this.holder.petPicture.setOnClickListener(new onPictureListener(this));
+        }
+        else {
+            //this.holder.petPicture.setHeight( Math.round(this.holder.petPicture.getWidth() * 0.7f));
+            //this.holder.petPicture.setHeight( 20);
+
+            this.holder.whiteBone.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void addLike(){

@@ -19,10 +19,12 @@ import java.util.Collections;
 public class PetAdaptator extends RecyclerView.Adapter<PetAdaptator.PetViewHolder>{
 
     ArrayList<Pet> pets;
+    boolean type;
 
-    public PetAdaptator(ArrayList<Pet> pets){
+    public PetAdaptator(ArrayList<Pet> pets, boolean type){
         super();
         this.pets = pets;
+        this.type = type;
     }
 
     @Override
@@ -33,7 +35,7 @@ public class PetAdaptator extends RecyclerView.Adapter<PetAdaptator.PetViewHolde
 
     @Override
     public void onBindViewHolder(PetViewHolder holder, int position) {
-        pets.get(position).setHolder(holder);
+        pets.get(position).setHolder(holder, type);
     }
 
     @Override
