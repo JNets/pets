@@ -44,16 +44,16 @@ public class PetAdaptator extends RecyclerView.Adapter<PetAdaptator.PetViewHolde
     }
 
     public class PetViewHolder extends RecyclerView.ViewHolder{
-        Button petPicture;
-        Button whiteBone;
+        ImageView petPicture;
+        ImageView whiteBone;
         TextView petName;
         TextView  petRating;
         ImageView orangeBone;
 
         public PetViewHolder(View itemView) {
             super(itemView);
-            petPicture = (Button) itemView.findViewById(R.id.petPicture);
-            whiteBone = (Button) itemView.findViewById(R.id.whiteBone);
+            petPicture = (ImageView) itemView.findViewById(R.id.petPicture);
+            whiteBone = (ImageView) itemView.findViewById(R.id.whiteBone);
             petName = (TextView) itemView.findViewById(R.id.petName);
             petRating = (TextView) itemView.findViewById(R.id.petRating);
             orangeBone = (ImageView) itemView.findViewById(R.id.orangeBone);

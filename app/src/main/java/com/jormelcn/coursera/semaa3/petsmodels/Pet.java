@@ -42,12 +42,12 @@ public class Pet implements Comparable<Pet>{
 
     public void setHolder(PetAdaptator.PetViewHolder holder, boolean type) {
         this.holder = holder;
-        this.holder.petPicture.setBackgroundResource(picture);
+        this.holder.petPicture.setImageResource(picture);
         this.holder.petRating.setText(String.valueOf(rating));
         this.holder.orangeBone.setImageResource(R.drawable.dog_bone_orange);
         if(type) {
             this.holder.petName.setText(name);
-            this.holder.whiteBone.setBackgroundResource(R.drawable.dog_bone);
+            this.holder.whiteBone.setImageResource(R.drawable.dog_bone);
             this.holder.whiteBone.setOnClickListener(new onLikeListener(this));
             this.holder.petPicture.setOnClickListener(new onPictureListener(this));
         }

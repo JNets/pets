@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_margin="2dp"
     android:layout_centerInParent="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <Button
+        <ImageView
             android:id="@+id/petPicture"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:adjustViewBounds="true"
             android:layout_weight="5"
             android:theme="@style/RaisedButton"/>
 
 
-        <RelativeLayout
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -28,12 +29,12 @@
             android:paddingTop="1dp"
             android:paddingBottom="1dp">
 
-            <Button
+            <ImageView
                 android:id="@+id/whiteBone"
-                android:layout_width="35dp"
-                android:layout_height="30dp"
-                android:layout_alignParentLeft="true"
-                android:theme="@style/RaisedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:gravity="left"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"/>
@@ -44,16 +45,16 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:textColor="#FFFFFF"
-                android:textSize="22dp"
+                android:textSize="12sp"
                 android:textStyle="bold"
-                android:layout_toRightOf="@+id/whiteBone"
                 />
 
             <ImageView
                 android:id="@+id/orangeBone"
-                android:layout_width="35dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:layout_gravity="end"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -63,13 +64,13 @@
                 android:id="@+id/petRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/orangeBone"
+                android:layout_gravity="end|right"
                 android:layout_centerVertical="true"
                 android:textColor="#f1BB10"
-                android:textSize="22dp"
+                android:textSize="12sp"
                 android:textStyle="bold"/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
