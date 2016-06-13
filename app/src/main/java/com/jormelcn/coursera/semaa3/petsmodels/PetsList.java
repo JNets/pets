@@ -25,11 +25,17 @@ public class PetsList extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pets_list);
+
+        BaseDatos db = new BaseDatos(this);
+        ArrayList<Pet> pets = db.getPetsLikes();
+        //db.addPets(PetsContainer.PETS);
+        /*for(int i = 0; i < 5; i++) {
+            db.addLike(1);
+        }*/
 
         toolbar = (Toolbar) findViewById(R.id.toolBar);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
@@ -37,10 +43,15 @@ public class PetsList extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setLogo(R.drawable.dog_paw);
+
+
+        PetsDetailFragment petsDetailFragment = new PetsDetailFragment();
+        PetListFragment petListFragment = PetListFragment.newInstance(viewPager, petsDetailFragment);
 
         ArrayList<Fragment> fragments = new ArrayList<>();
-        fragments.add(new PetListFragment());
-        fragments.add(new PetsDetailFragment());
+        fragments.add(petListFragment);
+        fragments.add(petsDetailFragment);
 
         PageAdapter pageAdapter = new PageAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(pageAdapter);
@@ -64,6 +75,10 @@ public class PetsList extends AppCompatActivity {
                 break;
             case R.id.about_option:
                 intent = new Intent(this,BioActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.lastLikes_option:
+                intent = new Intent(this,LikesActivity.class);
                 startActivity(intent);
                 break;
         }

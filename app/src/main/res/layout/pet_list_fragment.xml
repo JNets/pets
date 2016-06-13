@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/petList"
         android:layout_gravity="center_horizontal"
-        />
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
 
 </FrameLayout>

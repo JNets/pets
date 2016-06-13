@@ -47,17 +47,13 @@ import java.util.Collections;
 /**
  * Created by jormelcn on 29/05/16.
  */
-public class PetAdaptator extends RecyclerView.Adapter<PetAdaptator.PetViewHolder>{
+public class PetAdaptator2 extends RecyclerView.Adapter<PetAdaptator2.PetViewHolder>{
 
     ArrayList<Pet> pets;
-    ViewPager viewPager;
-    PetsDetailFragment petsDetailFragment;
 
-    public PetAdaptator(ArrayList<Pet> pets, ViewPager viewPager, PetsDetailFragment petsDetailFragment){
+    public PetAdaptator2(ArrayList<Pet> pets){
         super();
         this.pets = pets;
-        this.viewPager = viewPager;
-        this.petsDetailFragment = petsDetailFragment;
     }
 
     @Override
@@ -71,26 +67,6 @@ public class PetAdaptator extends RecyclerView.Adapter<PetAdaptator.PetViewHolde
         holder.petPicture.setImageResource(pets.get(position).getPicture());
         holder.petRating.setText(String.valueOf(pets.get(position).getRating()));
         holder.petName.setText(pets.get(position).getName());
-
-        holder.whiteBone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pets.get(position).addLike();
-                holder.petRating.setText(String.valueOf(pets.get(position).getRating()));
-                //BaseDatos db = new BaseDatos(viewPager.getContext());
-                //db.addLike(position);
-            }
-        });
-
-        holder.petPicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PetsContainer.PET_PROFILE = pets.get(position);
-                petsDetailFragment.updateProfile();
-                viewPager.setCurrentItem(1);
-            }
-        });
-
     }
 
     @Override
