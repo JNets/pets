@@ -6,16 +6,21 @@
         android:title="Likes"
         android:orderInCategory="10"
         android:icon="@drawable/star"
-        app:showAsAction="ifRoom"></item>
+        app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/contacto_option"
         android:title="Contacto"
         android:orderInCategory="100"
-        app:showAsAction="never"></item>
+        app:showAsAction="never"/>
 
     <item android:id="@+id/about_option"
         android:title="Acerca de"
         android:orderInCategory="200"
-        app:showAsAction="never"></item>
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/initDb_option"
+        android:title="Init DB"
+        android:orderInCategory="300"
+        app:showAsAction="never"/>
 
 </menu>

@@ -1,28 +1,28 @@
-package com.jormelcn.coursera.semaa3.petsmodels;
+package com.jormelcn.coursera.semaa3.petsmodels.fragment;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.jormelcn.coursera.semaa3.petsmodels.Pet;
+import com.jormelcn.coursera.semaa3.petsmodels.recyclerViewAdapter.PetAdapterGrid;
+import com.jormelcn.coursera.semaa3.petsmodels.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 /**
  * Created by jormelcn on 5/06/16.
  */
-public class PetsDetailFragment extends Fragment implements ProfileUpdater {
+public class ProfileFragment extends Fragment {
 
 
     View view;
@@ -31,34 +31,36 @@ public class PetsDetailFragment extends Fragment implements ProfileUpdater {
     TextView profileName;
     ImageView profilePicture;
     TextView profileRating;
-    ArrayList<Pet> dummyArray;
     PetAdapterGrid petAdaptator;
+
+    public static ProfileFragment newInstance() {
+        ProfileFragment fragment = new ProfileFragment();
+        fragment.petAdaptator = new PetAdapterGrid(new ArrayList<Pet>(), fragment.getActivity());
+        return fragment;
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //return super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.pet_detail_fragment, container, false);
+
+        view = inflater.inflate(R.layout.fragment_profile, container, false);
         petGrid = (RecyclerView) view.findViewById(R.id.petGrid);
         FrameLayout profileHolder = (FrameLayout) view.findViewById(R.id.petProfileCard);
-        profileCard = (FrameLayout) inflater.inflate(R.layout.pet_card, profileHolder);
 
+        profileCard = (FrameLayout) inflater.inflate(R.layout.card_view_pet_detail, profileHolder);
         profileCard.setPadding(0, 0, 0, 0);
-        //profileCard.setCardElevation(10);
 
         profileName = (TextView) profileCard.findViewById(R.id.petName);
-        if(profileName != null){
-            profileName.setText(PetsContainer.PET_PROFILE.getName());
-        }
+        //profileName.setText(PetsContainer.PET_PROFILE.getName());
+
         profilePicture = (ImageView) profileCard.findViewById(R.id.petPicture);
-        if(profilePicture != null){
-            profilePicture.setImageResource(PetsContainer.PET_PROFILE.getPicture());
-        }
+
+        //profilePicture.setImageResource(PetsContainer.PET_PROFILE.getPicture());
+
 
         profileRating = (TextView) profileCard.findViewById(R.id.petRating);
-        if(profileRating != null){
-            profileRating.setText(String.valueOf(PetsContainer.PET_PROFILE.getRating()));
-        }
+        //profileRating.setText(String.valueOf(PetsContainer.PET_PROFILE.getRating()));
+
 
         ImageView whiteBone = (ImageView) profileCard.findViewById(R.id.whiteBone);
         if(whiteBone != null){
@@ -72,26 +74,20 @@ public class PetsDetailFragment extends Fragment implements ProfileUpdater {
 
         StaggeredGridLayoutManager slm = new StaggeredGridLayoutManager(3,1);
         petGrid.setLayoutManager(slm);
-
-        dummyArray = new ArrayList<>();
-
-        for(int i = 0; i < 50; i++){
-            dummyArray.add(PetsContainer.PET_PROFILE);
-        }
-
-        petAdaptator = new PetAdapterGrid(PetsContainer.PET_PROFILE, 50);
         petGrid.setAdapter(petAdaptator);
 
         return view;
     }
 
-    @Override
-    public void updateProfile() {
-        profileName.setText(PetsContainer.PET_PROFILE.getName());
-        profilePicture.setImageResource(PetsContainer.PET_PROFILE.getPicture());
-        profileRating.setText(String.valueOf(PetsContainer.PET_PROFILE.getRating()));
-        petAdaptator.updatePet(PetsContainer.PET_PROFILE);
-        petAdaptator.notifyDataSetChanged();
+    public void updateProfile(Pet profile, ArrayList<Pet> pets) {
+        profileName.setText(profile.getName());
+        Picasso.with(getActivity()).load(profile.getPicture()).into(profilePicture);
         profilePicture.setMinimumHeight(200);
+        profileRating.setText(String.valueOf(profile.getRating()));
+
+        petAdaptator = new PetAdapterGrid(pets, getActivity());
+        if(petGrid != null) {
+            petGrid.setAdapter(petAdaptator);
+        }
     }
 }

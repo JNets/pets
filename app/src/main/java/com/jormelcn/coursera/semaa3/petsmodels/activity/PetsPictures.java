@@ -1,4 +1,4 @@
-package com.jormelcn.coursera.semaa3.petsmodels;
+package com.jormelcn.coursera.semaa3.petsmodels.activity;
 
 //import android.app.Fragment;
 import android.content.Intent;
@@ -7,56 +7,52 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+
+import com.jormelcn.coursera.semaa3.petsmodels.PageAdapter;
+import com.jormelcn.coursera.semaa3.petsmodels.Pet;
+import com.jormelcn.coursera.semaa3.petsmodels.Presenter.Presenter;
+import com.jormelcn.coursera.semaa3.petsmodels.R;
+import com.jormelcn.coursera.semaa3.petsmodels.fragment.PicturesListFragment;
+import com.jormelcn.coursera.semaa3.petsmodels.fragment.ProfileFragment;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
-public class PetsList extends AppCompatActivity {
+public class PetsPictures extends AppCompatActivity implements PicturesListFragment.OnEventsListener, Presenter.MyView{
 
     Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager viewPager;
+    PicturesListFragment picturesListFragment;
+    ProfileFragment profileFragment;
+    Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pets_list);
 
-        BaseDatos db = new BaseDatos(this);
-        ArrayList<Pet> pets = db.getPetsLikes();
-        //db.addPets(PetsContainer.PETS);
-        /*for(int i = 0; i < 5; i++) {
-            db.addLike(1);
-        }*/
-
         toolbar = (Toolbar) findViewById(R.id.toolBar);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setLogo(R.drawable.dog_paw);
 
-
-        PetsDetailFragment petsDetailFragment = new PetsDetailFragment();
-        PetListFragment petListFragment = PetListFragment.newInstance(viewPager, petsDetailFragment);
+        picturesListFragment = PicturesListFragment.newInstance(this);
+        profileFragment = ProfileFragment.newInstance();
 
         ArrayList<Fragment> fragments = new ArrayList<>();
-        fragments.add(petListFragment);
-        fragments.add(petsDetailFragment);
+        fragments.add(picturesListFragment);
+        fragments.add(profileFragment);
 
         PageAdapter pageAdapter = new PageAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(pageAdapter);
-
         tabLayout.setupWithViewPager(viewPager);
+        presenter = new Presenter(this);
     }
 
     @Override
@@ -70,19 +66,37 @@ public class PetsList extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()){
             case R.id.contacto_option:
-                intent = new Intent(this, ContactoActivity.class);
+                intent = new Intent(this, DeveloperContact.class);
                 startActivity(intent);
                 break;
             case R.id.about_option:
-                intent = new Intent(this,BioActivity.class);
+                intent = new Intent(this,DeveloperBio.class);
                 startActivity(intent);
                 break;
             case R.id.lastLikes_option:
-                intent = new Intent(this,LikesActivity.class);
-                startActivity(intent);
+                //intent = new Intent(this,RecentLikes.class);
+                //startActivity(intent);
+                break;
+            case R.id.initDb_option:
+                //profileFragment.updateProfile(PetsContainer.get(1), PetsContainer.PETS);
                 break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onPictureSelected(int pictureId) {
+
+    }
+
+    @Override
+    public void onAddLike(int petId) {
+
+    }
+
+    @Override
+    public void mostrarPetList(ArrayList<Pet> pets) {
+        picturesListFragment.setPetsList(pets);
     }
 }

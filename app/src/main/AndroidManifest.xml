@@ -2,13 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jormelcn.coursera.semaa3.petsmodels">
 
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PetsList">
+        <activity android:name=".activity.PetsPictures">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -16,19 +18,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PetsRating"
-            android:parentActivityName=".PetsList">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".PetsList" />
-        </activity>
+            android:name=".activity.DeveloperContact"
+            android:parentActivityName=".activity.PetsPictures" />
         <activity
-            android:name=".ContactoActivity"
-            android:parentActivityName=".PetsList" />
-        <activity
-            android:name=".BioActivity"
-            android:parentActivityName=".PetsList"></activity>
-        <activity android:name=".LikesActivity"></activity>
+            android:name=".activity.DeveloperBio"
+            android:parentActivityName=".activity.PetsPictures"></activity>
     </application>
 
 </manifest>

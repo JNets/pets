@@ -1,0 +1,40 @@
+Client ID 	0b6f074b6cf0420f8e86ca06ff2d6563
+Client Secret 	914953e9755c4afaa984da088789e739
+Website URL 	http://www.jormelcntest.tk/
+Redirect URI 	https://www.google.com.co/
+Support Email 	jormelcnx@gmail.com
+
+
+https://api.instagram.com/oauth/authorize/?client_id=0b6f074b6cf0420f8e86ca06ff2d6563&redirect_uri=https://www.google.com.co/&response_type=code&scope=basic+public_content+follower_list+comments+relationships+likes
+
+code=b238c9c2a284435abd66acdbab9ecd12
+
+scope=basic+public_content+follower_list+comments+relationships+likes
+
+
+curl -F 'client_id=0b6f074b6cf0420f8e86ca06ff2d6563' \
+    -F 'client_secret=914953e9755c4afaa984da088789e739' \
+    -F 'grant_type=authorization_code' \
+    -F 'redirect_uri=https://www.google.com.co/' \
+    -F 'code=b238c9c2a284435abd66acdbab9ecd12' \
+    https://api.instagram.com/oauth/access_token
+    
+    
+    {
+		"access_token": "3449146716.0b6f074.204fedfa0ff04b69b6c2dc38e4ab4879", 
+		"user": {
+			"username": "jormelcn", 
+			"bio": "", 
+			"website": "", 
+			"profile_picture": "https://igcdn-photos-h-a.akamaihd.net/hphotos-ak-xfl1/t51.2885-19/s150x150/13525298_1828702884028447_214012922_a.jpg", 
+			"full_name": "Jormel Narca", 
+			"id": "3449146716"
+		}
+	}
+	
+	https://api.instagram.com/v1/users/self/?access_token=3449146716.0b6f074.204fedfa0ff04b69b6c2dc38e4ab4879
+	
+	
+	https://api.instagram.com/v1/users/self/media/recent/?access_token=3449146716.0b6f074.204fedfa0ff04b69b6c2dc38e4ab4879
+
+

@@ -1,34 +1,25 @@
 package com.jormelcn.coursera.semaa3.petsmodels;
 
-import android.view.View;
-
-import java.util.jar.Attributes;
+import com.jormelcn.coursera.semaa3.petsmodels.recyclerViewAdapter.PetDetailListAdapter;
 
 /**
  * Created by jormelcn on 29/05/16.
  */
-public class Pet implements Comparable<Pet>{
-    private int picture;
+public class Pet {
+
+    private String id;
     private String name;
-    private int id;
+    private String picture;
     private int rating;
-    private PetAdaptator.PetViewHolder holder;
 
-    public static int[] lastRating = new int[5];
-
-    public Pet(int picture, String name, int id){
-        if(lastRating[0] == 0){
-            for(int i = 0; i < 5; i++){
-                lastRating[i] = i + 1;
-            }
-        }
-        this.picture = picture;
-        this.name = name;
-        this.rating = 0;
+    public Pet(String id, String name, String picture, int rating){
         this.id = id;
+        this.name = name;
+        this.picture = picture;
+        this.rating = rating;
     }
 
-    public int getPicture() {
+    public String getPicture() {
         return picture;
     }
 
@@ -36,22 +27,8 @@ public class Pet implements Comparable<Pet>{
         return name;
     }
 
-    public int getId(){
+    public String getId(){
         return  id;
-    }
-
-    public void addLike(){
-        rating++;
-        int i;
-        for(i = 0; i < 4; i++){
-            if(lastRating[i] == id)
-                break;
-        }
-
-        for(int j = i; j > 0; j--){
-            lastRating[j] = lastRating[j-1];
-        }
-        lastRating[0] = id;
     }
 
     public int getRating() {
@@ -60,14 +37,5 @@ public class Pet implements Comparable<Pet>{
 
     public void setRating(int rating) {
         this.rating = rating;
-    }
-
-    @Override
-    public int compareTo(Pet another) {
-        if(this.rating >  another.rating)
-            return 1;
-        else if(this.rating < another.rating)
-            return -1;
-        return 0;
     }
 }
